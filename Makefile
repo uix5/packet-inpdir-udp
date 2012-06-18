@@ -61,7 +61,7 @@ DIST = \
 	Makefile
 
 
-src/packet-inpdir-udp.lua: $(SOURCES)
+build/packet-inpdir-udp.lua: $(SOURCES)
 	$(MKDIR) -p build
 	$(FILEPP) $(FILEPP_FLAGS) src/core.lua > build/packet-inpdir-udp.lua
 
@@ -80,7 +80,7 @@ clean:
 	$(RM) build/packet-inpdir-udp.lua
 
 # copy dissector to Wireshark plugin dir on Windows
-install-win: src/packet-inpdir-udp.lua
+install-win: build/packet-inpdir-udp.lua
 	(cp build/packet-inpdir-udp.lua "$(APPDATA)\\wireshark\\plugins")
 
 
