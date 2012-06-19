@@ -9,12 +9,12 @@ local function diss_pkt07(buf, pinfo, tree, goffset)
 
 
 
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Center cursor on return?")
+    -- number of slave we are returning from
+    add_named_tree_field(buf, tree, offset, 4, "Slave Number")
     offset = offset + 4
 
     -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Again?")
+    add_named_tree_field(buf, tree, offset, 4, "Unknown")
     offset = offset + 4
 
     -- absolute coordinate of where cursor transitioned

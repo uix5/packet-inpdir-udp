@@ -17,8 +17,8 @@ local function diss_pkt09(buf, pinfo, tree, goffset)
     add_named_tree_field(buf, tree, offset, 4, "Unknown2")
     offset = offset + 4
 
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown3")
+    -- number of slave we are returning from
+    add_named_tree_field(buf, tree, offset, 4, "Slave Number")
     offset = offset + 4
 
 
