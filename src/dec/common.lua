@@ -39,30 +39,34 @@ local function dec_header(buf, pinfo, tree, goffset)
     lt:add(f.session_key, buf(offset, 16))
     offset = offset + 16
 
+    local slt = lt:add(buf(offset, 8), "Sender Info")
     -- ip of sender of packet
-    lt:add(f.ip_src, buf(offset, 4))
+    slt:add(f.ip_src, buf(offset, 4))
     offset = offset + 4
 
     -- port of sender of packet
-    lt:add_le(f.port_src, buf(offset, 4))
+    slt:add_le(f.port_src, buf(offset, 4))
     offset = offset + 4
 
     -- dunno: seems to be same as header len field
     add_named_tree_field(buf, lt, offset, 4, "Unknown")
     offset = offset + 4
 
+    -- encryption stuff
+    local elt = lt:add(buf(offset, 4), "Encryption Settings")
+
     -- encryption type used
     local enc_type = buf(offset, 1):le_uint()
-    add_named_tree_field(buf, lt, offset, 1, "Payload encryption"):append_text(
+    add_named_tree_field(buf, elt, offset, 1, "Payload encryption"):append_text(
         _F(": %s", encryption_type_str_or_unknown(enc_type)))
     offset = offset + 1
 
     -- also encryption related
-    add_named_tree_field(buf, lt, offset, 1, "Encrypted pw check byte")
+    add_named_tree_field(buf, elt, offset, 1, "Encrypted pw check byte")
     offset = offset + 1
 
     -- dunno: 
-    add_named_tree_field(buf, lt, offset, 2, "Unknown")
+    add_named_tree_field(buf, elt, offset, 2, "Unknown")
     offset = offset + 2
 
     -- handled X bytes
