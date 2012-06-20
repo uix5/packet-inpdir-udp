@@ -41,17 +41,9 @@ SOURCES = \
 	src/dec/pkt0a.lua \
 	src/dec/pkt0b.lua \
 	src/dec/pkt0f.lua \
-	src/dec/pkt10.lua \
-	src/dec/pkt12.lua \
-	src/dec/pkt13.lua \
 	src/dec/pkt14.lua \
 	src/dec/pkt16.lua \
-	src/dec/pkt17.lua \
-	src/dec/pkt19.lua \
-	src/dec/pkt1a.lua \
-	src/dec/pkt1b.lua \
-	src/dec/pkt1c.lua \
-	src/dec/pkt1d.lua \
+	src/dec/pkt19.lua
 
 
 DIST = \

@@ -155,20 +155,11 @@ do
     	[PKT_INPUT_MIRROR] = diss_pkt0B,
 
     	[PKT_SCREENSAVER_STATE] = diss_pkt0F,
-    	[PKT_LOCK_SLAVE] = diss_pkt10,
-    	[PKT_SHUTDOWN_SLAVE] = diss_pkt11,
-    	[PKT_MASTER_HEARTBEAT] = diss_pkt12,
-    	[PKT_SLAVE_CTRL_ALT_DEL] = diss_pkt13,
     	[PKT_CONFIGURATION_UPDATE] = diss_pkt14,
 
     	[PKT_DISABLE_EDGE_TRANSITIONS] = diss_pkt16,
-    	[PKT_SESSION_TERMINATION] = diss_pkt17,
 
     	[PKT_ENCRYPTION_CONFIG_MISMATCH] = diss_pkt19,
-    	[PKT_SESSION_SETUP] = diss_pkt1A,
-    	[PKT_SESSION_SETUP_ACK] = diss_pkt1B,
-    	[PKT_SLAVE_ANNOUNCE] = diss_pkt1C,
-    	[PKT_SLAVE_HEARTBEAT] = diss_pkt1D,
     }
 
 
