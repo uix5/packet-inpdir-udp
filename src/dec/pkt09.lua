@@ -1,4 +1,4 @@
-
+-- Shortcut Cursor Return
 local function diss_pkt09(buf, pinfo, tree, goffset)
     -- handle common part
     res = dec_header(buf, pinfo, tree, goffset)
@@ -9,8 +9,8 @@ local function diss_pkt09(buf, pinfo, tree, goffset)
 
 
 
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown1")
+    -- Seems to be the number of keys in the shortcut?
+    add_named_tree_field(buf, tree, offset, 4, "Shortcut Key Count?")
     offset = offset + 4
 
     -- dunno constant
