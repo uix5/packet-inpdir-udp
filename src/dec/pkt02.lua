@@ -37,19 +37,26 @@ local function diss_pkt02(buf, pinfo, tree, goffset)
 
 
     -- dunno constant
-    offset = offset + add_unknown_fields(buf, pinfo, tree, offset, 3, 4)
+    offset = offset + add_unknown_fields(buf, pinfo, tree, offset, 2, 4)
+
+
+    -- absolute coordinate of where cursor transitioned
+    local abs_coord = (buf(offset, 4):le_uint() / 65536.0) * 100.0
+    add_named_tree_field(buf, tree, offset, 4, "Enter Abs Coord? (G)"):append_text(
+        _F(", %.2f%%", abs_coord))
+    offset = offset + 4
 
 
     -- side where cursor came from?
     local cursor_origin = buf(offset, 4):le_uint()
-    add_named_tree_field(buf, tree, offset, 4, "Cursor origin?"):append_text(
+    add_named_tree_field(buf, tree, offset, 4, "Enter Side? (G)"):append_text(
         _F(": %s", decode_side_flags(cursor_origin)))
     offset = offset + 4
 
 
     -- dunno constant
     local cb_list_len = buf(offset, 1):le_uint()
-    add_named_tree_field(buf, tree, offset, 4, "Clipboard format list len")
+    add_named_tree_field(buf, tree, offset, 4, "Clipboard format list len (G)")
     offset = offset + 4
 
     -- some sort of ip mask
