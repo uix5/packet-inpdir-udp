@@ -49,7 +49,7 @@ local function dec_header(buf, pinfo, tree, goffset)
     offset = offset + 4
 
     -- dunno: seems to be same as header len field
-    add_named_tree_field(buf, lt, offset, 4, "Unknown")
+    add_named_tree_field(buf, lt, offset, 4, "Header Length Repeat?")
     offset = offset + 4
 
     -- encryption stuff
