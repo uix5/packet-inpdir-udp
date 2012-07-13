@@ -19,7 +19,7 @@ do
 
 
     -- create protocol
-    local p_inputdir = Proto("INPDIR", "Input Director")
+    local p_inputdir = Proto("INPDIRv8", "Input Director UDP (v8)")
 
     p_inputdir.prefs["udp_port_start"] = Pref.string("UDP port range start", "31234", "Start of UDP port range")
     p_inputdir.prefs["udp_port_end"]   = Pref.string("UDP port range end", "31234", "End of UDP port range")
