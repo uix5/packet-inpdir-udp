@@ -7,14 +7,10 @@ local function add_named_tree_field(buf, tree, offset, len, text)
     local st = tree:add(data, text)
     if len == 8 then
         data = data:le_uint64()
-        st:append_text(_F(": %u (0x%016x)", data, data))
-    elseif len == 4 then
-        data = data:le_uint()
-        st:append_text(_F(": %u (0x%08x)", data, data))
     else
         data = data:le_uint()
-        st:append_text(_F(": %u (0x%04x)", data, data))
     end
+    st:append_text(_F(": %u", data))
     return st
 end
 
@@ -23,14 +19,10 @@ local function add_named_tree_field_int(buf, tree, offset, len, text)
     local st = tree:add(data, text)
     if len == 8 then
         data = data:le_int64()
-        st:append_text(_F(": %d (0x%016x)", data, data))
-    elseif len == 4 then
-        data = data:le_int()
-        st:append_text(_F(": %d (0x%08x)", data, data))
     else
         data = data:le_int()
-        st:append_text(_F(": %d (0x%04x)", data, data))
     end
+    st:append_text(_F(": %d", data))
     return st
 end
 
