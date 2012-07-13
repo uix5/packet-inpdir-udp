@@ -170,26 +170,23 @@ do
 
     -- actual dissector method
     function p_inputdir.dissector (buf, pinfo, tree)
-    	-- check pkt len
-    	local pkt_len = buf:len()
-    	if pkt_len <= 0 then return end
-
-    	-- clear any previous text
-    	if pinfo.columns.info then
-    		pinfo.columns.info:clear()
-    	end
-
-    	-- 
     	if tree then
+            -- check pkt len
+            local pkt_len = buf:len()
+            if pkt_len <= 0 then return end
 
     		-- check version early
     		local _ver = buf((4 * 4), 4):le_uint()
     		if _ver ~= INPDIR_VER then
-    			tree:add(_F("Not version %u, but %u. Sorry", INPDIR_VER, _ver))
+                -- don't add anything, just return, we can't dissect this
     			pinfo.desegment_len = 0
     			return 0
     		end
 
+            -- clear any previous text
+            if pinfo.columns.info then
+                pinfo.columns.info:clear()
+            end
 
     		-- add protocol to tree
     		local subtree = tree:add(p_inputdir, buf())
