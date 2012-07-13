@@ -7,11 +7,16 @@ local function dec_header(buf, pinfo, tree, goffset)
     if buf:len() < minimum_sz then return -1 end
 
 
-    -- overlay header size on pkt
+    -- overlay common size on pkt
+    lt = tree:add(buf(offset, minimum_sz), _F("Common (%d bytes)", minimum_sz))
+
+    -- pseudo header length
     local maybe_header_len = buf(offset + (4 * 3), 4):le_uint()
-    lt = tree:add(buf(offset, maybe_header_len), _F("Common (%d bytes)", maybe_header_len))
+    local pho = tree:add(buf(offset, maybe_header_len), 
+        _F("Pseudo header overlay (%d bytes)", maybe_header_len))
+    pho:set_generated()
 
-
+    -- magic
     lt:add(f.magic, buf(offset, 4 * 3))
     offset = offset + (4 * 3)
 
