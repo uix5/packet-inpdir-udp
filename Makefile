@@ -76,7 +76,8 @@ install-win: build/packet-inpdir-udp.lua
 	(cp build/packet-inpdir-udp.lua "$(APPDATA)\\wireshark\\plugins")
 
 install-linux: build/packet-inpdir-udp.lua
-	(cp build/packet-inpdir-udp.lua "$(HOME)/.wireshark/plugins")
+	(mkdir -p $(HOME)/.wireshark/plugins) && (\
+	 cp build/packet-inpdir-udp.lua "$(HOME)/.wireshark/plugins/")
 
 -include Makefile.local
 
