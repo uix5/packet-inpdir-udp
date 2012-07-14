@@ -112,3 +112,16 @@ local function add_encrypted_field(buf, pinfo, tree, goffset, len)
 end
 
 
+local function mickeys_to_perc(m)
+    return ((m / 65536.0) * 100.0)
+end
+
+
+local function perc_to_mickeys(p)
+    return ((p / 100.0) * 65536.0)
+end
+
+
+local function get_uint32_le(buf, offset)
+    return buf(offset, 4):le_uint()
+end
