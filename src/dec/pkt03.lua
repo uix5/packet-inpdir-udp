@@ -46,9 +46,8 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
 
 
     -- absolute coordinate of where cursor transitioned
-    local abs_coord = (buf(offset, 4):le_uint() / 65536.0) * 100.0
     add_named_tree_field(buf, tree, offset, 4, "Enter Abs Coord"):append_text(
-        _F(" (%.2f%%)", abs_coord))
+        _F(" (%.2f%%)", mickeys_to_perc(get_uint32_le(buf, offset))))
     offset = offset + 4
 
     -- flag indicating which side cursor should 'enter' screen
