@@ -38,12 +38,13 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
 
 
     -- at which sides does this slave have screens to transition to?
-    local nbt = tree:add_le(f.pkt03_neighbours, buf(offset, 4))
+    local nb = buf(offset, 4)
+    local nbt = tree:add_le(f.pkt03_neighbours, nb)
     nbt:append_text(_F(" (%s)", decode_side_flags(get_uint32_le(buf, offset))))
-    nbt:add_le(f.pkt03_neighbours_left, buf(offset, 4))
-    nbt:add_le(f.pkt03_neighbours_right, buf(offset, 4))
-    nbt:add_le(f.pkt03_neighbours_top, buf(offset, 4))
-    nbt:add_le(f.pkt03_neighbours_bottom, buf(offset, 4))
+    nbt:add_le(f.pkt03_neighbours_left, nb)
+    nbt:add_le(f.pkt03_neighbours_right, nb)
+    nbt:add_le(f.pkt03_neighbours_top, nb)
+    nbt:add_le(f.pkt03_neighbours_bottom, nb)
     offset = offset + 4
 
 
