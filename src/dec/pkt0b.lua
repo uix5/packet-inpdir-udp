@@ -9,7 +9,7 @@ local function diss_pkt0B(buf, pinfo, tree, goffset)
     local offset = goffset + res
 
     -- nr of input events?
-    local nr_of_events = buf(offset, 4):le_uint()
+    local nr_of_events = get_uint32_le(buf, offset)
     add_named_tree_field(buf, tree, offset, 4, "Nr of events?")
     offset = offset + 4
 

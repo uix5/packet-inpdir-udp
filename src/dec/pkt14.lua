@@ -14,7 +14,7 @@ local function diss_pkt14(buf, pinfo, tree, goffset)
 
 
     -- see if this is a reset pkt
-    local is_reset = buf(offset, 4):le_uint()
+    local is_reset = get_uint32_le(buf, offset)
     add_named_tree_field(buf, tree, offset, 4, "Config valid?")
     offset = offset + 4
 
@@ -32,7 +32,7 @@ local function diss_pkt14(buf, pinfo, tree, goffset)
 
 
     -- str len of hostname?
-    local str_len = buf(offset, 4):le_uint()
+    local str_len = get_uint32_le(buf, offset)
     add_named_tree_field(buf, tree, offset, 4, "Slave Hostname strlen")
     offset = offset + 4
 

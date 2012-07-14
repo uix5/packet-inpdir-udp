@@ -15,7 +15,7 @@ local function diss_pkt02(buf, pinfo, tree, goffset)
 
 
     -- nr of input events?
-    local nr_of_events = buf(offset, 4):le_uint()
+    local nr_of_events = get_uint32_le(buf, offset)
     add_named_tree_field(buf, tree, offset, 4, "Nr of events?")
     offset = offset + 4
 
@@ -41,9 +41,8 @@ local function diss_pkt02(buf, pinfo, tree, goffset)
 
 
     -- absolute coordinate of where cursor transitioned
-    local abs_coord = (buf(offset, 4):le_uint() / 65536.0) * 100.0
     add_named_tree_field(buf, tree, offset, 4, "Enter Abs Coord? (G)"):append_text(
-        _F(", %.2f%%", abs_coord))
+        _F(" (%.2f%%)", mickeys_to_perc(get_uint32_le(buf, offset))))
     offset = offset + 4
 
 

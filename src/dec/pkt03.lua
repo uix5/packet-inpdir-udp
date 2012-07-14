@@ -25,9 +25,8 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
 
 
     -- at which sides does this slave have screens to transition to?
-    local conn_at = buf(offset, 4):le_uint()
     add_named_tree_field(buf, tree, offset, 4, "Neighbours"):append_text(
-        _F(": %s", decode_side_flags(conn_at)))
+        _F(": %s", decode_side_flags(get_uint32_le(buf, offset))))
     offset = offset + 4
 
 
