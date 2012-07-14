@@ -55,7 +55,7 @@ do
     f.payl_len    = ProtoField.uint32("inpdir.header.plen",        "Packet Length",   base.DEC)
     f.msg_nr      = ProtoField.uint32("inpdir.header.seq",         "Sequence number", base.DEC)
     f.session_key = ProtoField.guid  ("inpdir.header.session_key", "Session key",     base.HEX)
-    f.ip_src      = ProtoField.ipv4  ("inpdir.header.srcip",       "Sender IP",       base.DEC)
+    f.ip_src      = ProtoField.ipv4  ("inpdir.header.srcip",       "Sender IP")
     f.port_src    = ProtoField.uint16("inpdir.header.srcport",     "Sender Port",     base.DEC)
 
 
