@@ -2,23 +2,20 @@
 local function dec_header(buf, pinfo, tree, goffset)
     local offset = goffset
 
-    local minimum_sz = 64
-
-    if buf:len() < minimum_sz then return -1 end
-
-
     -- overlay common size on pkt
-    lt = tree:add(buf(offset, minimum_sz), _F("Common (%d bytes)", minimum_sz))
+    lt = tree:add(buf(offset, COMMON_LENGTH), _F("Common (%d bytes)", COMMON_LENGTH))
 
     -- pseudo header length
-    local maybe_header_len = buf(offset + (4 * 3), 4):le_uint()
+    local maybe_header_len_offset = 4 * 3
+    local maybe_header_len = buf(offset + maybe_header_len_offset, 4):le_uint()
     local pho = tree:add(buf(offset, maybe_header_len), 
         _F("Pseudo header overlay (%d bytes)", maybe_header_len))
     pho:set_generated()
 
     -- magic
-    lt:add(f.magic, buf(offset, 4 * 3))
-    offset = offset + (4 * 3)
+    local magic_sz = 4 * 3
+    lt:add(f.magic, buf(offset, magic_sz))
+    offset = offset + magic_sz
 
     -- len of 'header' or common part
     lt:add_le(f.hdr_len, buf(offset, 4))
@@ -41,8 +38,9 @@ local function dec_header(buf, pinfo, tree, goffset)
     offset = offset + 4
 
     -- 'authentication' guid
-    lt:add(f.session_key, buf(offset, 16))
-    offset = offset + 16
+    local guid_sz = 16
+    lt:add(f.session_key, buf(offset, guid_sz))
+    offset = offset + guid_sz
 
     local slt = lt:add(buf(offset, 8), "Sender Info")
     -- ip of sender of packet
