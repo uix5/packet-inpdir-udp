@@ -15,8 +15,8 @@ local function diss_clipboard_format_list(buf, pinfo, tree, goffset, cb_list_len
     for i = 1,cb_list_len do
         -- dunno constant
         local cb_fmt = buf(offset, 1):le_uint()
-        add_named_tree_field(buf, mt, offset, cb_format_elem_sz, _F("Type %u", i)):append_text(
-            _F(": %s", win32_standard_clipboard_formats_str_or_unknown(cb_fmt)))
+        add_named_tree_field(buf, mt, offset, cb_format_elem_sz, 
+            win32_standard_clipboard_formats_str_or_unknown(cb_fmt))
         offset = offset + cb_format_elem_sz
     end
 
