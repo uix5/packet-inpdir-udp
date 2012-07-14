@@ -1,4 +1,17 @@
 
+-- local field decls
+f.pkt03_neighbours = ProtoField.uint8("inpdirv8.pkt03.nb", "Neighbours", base.HEX)
+f.pkt03_neighbours_left = ProtoField.uint8("inpdirv8.pkt03.nb.l", 
+    "Left  ", nil, yes_no_str, 0x01)
+f.pkt03_neighbours_right = ProtoField.uint8("inpdirv8.pkt03.nb.r", 
+    "Right ", nil, yes_no_str, 0x02)
+f.pkt03_neighbours_top = ProtoField.uint8("inpdirv8.pkt03.nb.t", 
+    "Top   ", nil, yes_no_str, 0x04)
+f.pkt03_neighbours_bottom = ProtoField.uint8("inpdirv8.pkt03.nb.b", 
+    "Bottom", nil, yes_no_str, 0x08)
+
+
+
 local function diss_pkt03(buf, pinfo, tree, goffset)
     -- handle common part
     res = dec_header(buf, pinfo, tree, goffset)
@@ -25,8 +38,12 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
 
 
     -- at which sides does this slave have screens to transition to?
-    add_named_tree_field(buf, tree, offset, 4, "Neighbours"):append_text(
-        _F(": %s", decode_side_flags(get_uint32_le(buf, offset))))
+    local nbt = tree:add_le(f.pkt03_neighbours, buf(offset, 4))
+    nbt:append_text(_F(" (%s)", decode_side_flags(get_uint32_le(buf, offset))))
+    nbt:add_le(f.pkt03_neighbours_left, buf(offset, 4))
+    nbt:add_le(f.pkt03_neighbours_right, buf(offset, 4))
+    nbt:add_le(f.pkt03_neighbours_top, buf(offset, 4))
+    nbt:add_le(f.pkt03_neighbours_bottom, buf(offset, 4))
     offset = offset + 4
 
 
