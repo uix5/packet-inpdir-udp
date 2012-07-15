@@ -48,3 +48,14 @@
 [PKT_SLAVE_ANNOUNCE] = "S> Slave announce",
 #define PKT_SLAVE_HEARTBEAT 0x1D
 [PKT_SLAVE_HEARTBEAT] = "S> Slave heartbeat",
+#define PKT_RELIABLE_COMMS_ACK 0x1E
+[PKT_RELIABLE_COMMS_ACK] = "S> Reliable Comms ACK",
+
+
+
+#define PKT_OPEN_FILE_ON_SHARE 0x20
+[PKT_OPEN_FILE_ON_SHARE] = "S> Open File On Share",
+
+
+#define PKT_SOMETHING_WITH_SHORTCUT_CURSOR_RETURN 0x22
+[PKT_SOMETHING_WITH_SHORTCUT_CURSOR_RETURN] = "M> Something With Shortcut Cursor Return",

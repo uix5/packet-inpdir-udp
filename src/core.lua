@@ -19,7 +19,7 @@ do
 
 
     -- create protocol
-    local p_inputdir = Proto("INPDIRv8", "Input Director UDP (v8)")
+    local p_inputdir = Proto("INPDIRv15", "Input Director UDP (v15)")
 
     p_inputdir.prefs["udp_port_start"] = Pref.string("UDP port range start", "31234", "Start of UDP port range")
     p_inputdir.prefs["udp_port_end"]   = Pref.string("UDP port range end", "31234", "End of UDP port range")
@@ -71,9 +71,9 @@ do
     local MAGIC_STR1 = 0x038f3bd4
     local MAGIC_STR2 = MAGIC_STR0
 
-    local HDR_LEN = 0xa4
+    local HDR_LEN = 0xb0
 
-    local INPDIR_VER = 0x8
+    local INPDIR_VER = 0x0f
 
     local COMMON_LENGTH = 64 -- bytes
 
@@ -162,6 +162,11 @@ do
         [PKT_DISABLE_EDGE_TRANSITIONS] = diss_pkt16,
 
         [PKT_ENCRYPTION_CONFIG_MISMATCH] = diss_pkt19,
+
+
+        [PKT_RELIABLE_COMMS_ACK] = diss_pkt1E,
+
+        [PKT_OPEN_FILE_ON_SHARE] = diss_pkt20,
     }
 
 

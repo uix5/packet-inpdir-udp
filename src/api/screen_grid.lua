@@ -6,7 +6,7 @@ local function diss_screen_grid(buf, pinfo, tree, goffset)
     local offset = goffset
 
     -- overlay over all screen ids
-    local max_cells = (5 * 4)
+    local max_cells = (5 * 6)
     local temp_screen_setup_sz = 5 + (max_cells * 2)
     local mt = tree:add(buf(offset, temp_screen_setup_sz), "Slave screen setup")
 

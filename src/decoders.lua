@@ -12,3 +12,7 @@
 #include "dec/pkt14.lua"
 #include "dec/pkt16.lua"
 #include "dec/pkt19.lua"
+
+#include "dec/pkt1e.lua"
+
+#include "dec/pkt20.lua"

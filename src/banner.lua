@@ -1,6 +1,6 @@
---[[ packet-inpdir-udp.lua build on %time%
+--[[ packet-inpdir-udp-v15.lua build on %time%
 
-Stab at a dissector for the Input Director protocol, v8 (used by 1.2.2).
+Stab at a dissector for the Input Director protocol, v15 (used by 1.3 beta100).
 
 This runs over UDP, (normally) at port 31234.
 
