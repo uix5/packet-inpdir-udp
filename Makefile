@@ -9,14 +9,14 @@ FILEPP_FLAGS= \
 	-m pb-utils.pm \
 	-m literal.pm
 
-GCUFLAGS?=-p packet-inpdir-udp -s "packet-inpdir-udp plugin"
+GCUFLAGS?=-p packet-inpdir-udp-v15 -s "packet-inpdir-udp-v15 plugin"
 
-PKGNAME=packet-inpdir-udp
-DISTNAME=packet-inpdir-udp-src
+PKGNAME=packet-inpdir-udp-v15
+DISTNAME=packet-inpdir-udp-v15-src
 VERSION:=$(shell date +%Y%m%d)
 
 PKG = \
-	build/packet-inpdir-udp.lua
+	build/packet-inpdir-udp-v15.lua
 
 SOURCES = \
 	src/banner.lua \
@@ -53,9 +53,9 @@ DIST = \
 	Makefile
 
 
-build/packet-inpdir-udp.lua: $(SOURCES)
+build/packet-inpdir-udp-v15.lua: $(SOURCES)
 	$(MKDIR) -p build
-	$(FILEPP) $(FILEPP_FLAGS) src/core.lua > build/packet-inpdir-udp.lua
+	$(FILEPP) $(FILEPP_FLAGS) src/core.lua > build/packet-inpdir-udp-v15.lua
 
 
 .PHONY: pkg clean
@@ -69,15 +69,15 @@ $(PKGNAME)-$(VERSION).zip: $(PKG)
 pkg: $(PKGNAME)-$(VERSION).zip
 
 clean:
-	$(RM) build/packet-inpdir-udp.lua
+	$(RM) build/packet-inpdir-udp-v15.lua
 
 # copy dissector to Wireshark plugin dir on Windows
-install-win: build/packet-inpdir-udp.lua
-	(cp build/packet-inpdir-udp.lua "$(APPDATA)\\wireshark\\plugins")
+install-win: build/packet-inpdir-udp-v15.lua
+	(cp build/packet-inpdir-udp-v15.lua "$(APPDATA)\\wireshark\\plugins")
 
-install-linux: build/packet-inpdir-udp.lua
+install-linux: build/packet-inpdir-udp-v15.lua
 	(mkdir -p $(HOME)/.wireshark/plugins) && (\
-	 cp build/packet-inpdir-udp.lua "$(HOME)/.wireshark/plugins/")
+	 cp build/packet-inpdir-udp-v15.lua "$(HOME)/.wireshark/plugins/")
 
 -include Makefile.local
 

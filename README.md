@@ -4,8 +4,8 @@ Wireshark Lua Dissector for the Input Director UDP protocol
 
 Based on the protocol info from [uix5/info-inpdir][]. Work in progress.
 
-Only supports version 8 of the protocol (for now), which is used by v1.2.2 of
-Input Director.
+Only supports version 15 of the protocol (for now), which is used by 
+v1.3 beta100 of Input Director.
 
 
 PS: I'm not a Lua coder, which probably explains the mess of code.
