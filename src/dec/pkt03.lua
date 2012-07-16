@@ -26,15 +26,23 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
     local b_encrypted = (buf(offset -4, 1):le_uint() ~= 0)
 
 
+    -- temporary; skip 2 bytes to align rest of fields
+    -- offset = offset + 2
+
 
     -- number of slave we are entering
-    add_named_tree_field(buf, tree, offset, 4, "Slave Number")
-    offset = offset + 4
+    add_named_tree_field(buf, tree, offset, 2, "Slave Number")
+    offset = offset + 2
 
 
     -- dunno constant
     add_named_tree_field(buf, tree, offset, 4, "Unknown1")
     offset = offset + 4
+
+
+    -- dunno constant
+    add_named_tree_field(buf, tree, offset, 2, "Unknown2")
+    offset = offset + 2
 
 
     -- at which sides does this slave have screens to transition to?
@@ -60,6 +68,10 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
     -- dunno constant
     add_named_tree_field(buf, tree, offset, 4, "Unknown4")
     offset = offset + 4
+
+
+    -- temporary: skip 6 bytes to align known fields again
+    offset = offset + add_unknown_field(buf, pinfo, tree, offset, 8)
 
 
     -- absolute coordinate of where cursor transitioned
@@ -95,6 +107,10 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
     offset = offset + diss_cursor_trans_settings(buf, pinfo, tree, offset)
 
 
+    -- number of transitions?
+    add_named_tree_field(buf, tree, offset, 4, "Trans to slaves #?")
+    offset = offset + 4
+
 
     -- no point in continuing if payload encrypted
     if b_encrypted then
@@ -117,7 +133,13 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
 
 
     -- add_zeros_field(buf, pinfo, tree, goffset, len = nil)
-    offset = offset + add_unknown_field(buf, pinfo, tree, offset)
+    offset = offset + add_unknown_field(buf, pinfo, tree, offset, 36)
+
+
+    -- hostname (or ip address as string) of host
+    local len_left = buf:len() - offset
+    add_named_tree_field_str(buf, tree, offset, len_left, "Hostname?")
+    offset = offset + len_left
 
 
     return (offset - goffset)
