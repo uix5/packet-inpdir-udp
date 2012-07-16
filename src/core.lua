@@ -19,7 +19,8 @@ do
 
 
     -- create protocol
-    local p_inputdir = Proto("INPDIRv15", "Input Director UDP (v15)")
+    local p_inputdir_name = "INPDIRv15"
+    local p_inputdir = Proto(p_inputdir_name, "Input Director UDP (v15)")
 
     p_inputdir.prefs["udp_port_start"] = Pref.string("UDP port range start", "31234", "Start of UDP port range")
     p_inputdir.prefs["udp_port_end"]   = Pref.string("UDP port range end", "31234", "End of UDP port range")
@@ -224,10 +225,10 @@ do
 
             -- add info to top pkt view
             if pinfo.columns.protocol then
-                pinfo.columns.protocol:set(p_inputdir.name)
+                pinfo.columns.protocol:set(p_inputdir_name)
             end
 
-            if pinfo.columns.info then
+            if pinfo.cols.info then
                 pinfo.cols.info:set(_F("%s (0x%02x)", pkt_t_str, pkt_type))
             end
 
