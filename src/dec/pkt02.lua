@@ -20,24 +20,35 @@ local function diss_pkt02(buf, pinfo, tree, goffset)
     offset = offset + 4
 
     -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown1"):append_text(" (D:0x01?)")
+    local flags1 = get_uint32_le(buf, offset)
+    add_named_tree_field(buf, tree, offset, 4, "Flags1"):append_text(
+        _F(": %s", decode_reliable_comms_flags(flags1)))
     offset = offset + 4
 
     -- number of slave we are directing
-    add_named_tree_field(buf, tree, offset, 4, "Slave Number")
-    offset = offset + 4
+    -- add_named_tree_field(buf, tree, offset, 4, "Slave Number")
+    -- offset = offset + 4
 
 
     -- keyboard layout settings
     offset = offset + diss_keyboard_settings(buf, pinfo, tree, offset)
 
 
+    -- some sort of sequence nr?
+    add_named_tree_field(buf, tree, offset, 4, "Reliable comms seq nr?")
+    offset = offset + 4
+
+    -- again?
+    add_named_tree_field(buf, tree, offset, 4, "Again?")
+    offset = offset + 4
+
+    -- number of transitions?
+    add_named_tree_field(buf, tree, offset, 4, "Trans to slaves #?")
+    offset = offset + 4
+
+
     -- dunno
-    offset = offset + add_unknown_field(buf, pinfo, tree, offset, 16)
-
-
-    -- dunno constant
-    offset = offset + add_unknown_fields(buf, pinfo, tree, offset, 2, 4)
+    offset = offset + add_unknown_field(buf, pinfo, tree, offset, 24)
 
 
     -- absolute coordinate of where cursor transitioned
@@ -76,6 +87,11 @@ local function diss_pkt02(buf, pinfo, tree, goffset)
 
     -- cursor transition flags
     offset = offset + diss_cursor_trans_settings(buf, pinfo, tree, offset)
+
+
+    -- some sort of sequence nr?
+    add_named_tree_field(buf, tree, offset, 4, "Trans to slaves # again?")
+    offset = offset + 4
 
 
     -- no point in continuing if payload encrypted
