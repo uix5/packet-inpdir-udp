@@ -284,6 +284,9 @@ end
 
 
 local function decode_side_flags(iflags)
+    -- 'none' isn't really a flag
+    if iflags == 0x00 then return "None" end
+
     return stringify_bit_flags(screen_enter_pos_str, iflags)
 end
 
