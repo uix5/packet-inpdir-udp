@@ -48,15 +48,15 @@ do
 
     -- http://www.wireshark.org/docs/wsug_html_chunked/lua_module_Proto.html#lua_class_ProtoField
     -- common fields
-    f.magic       = ProtoField.bytes ("inpdir.header.magic",       "Magic")
-    f.hdr_len     = ProtoField.uint32("inpdir.header.len",         "Header Length",   base.DEC)
-    f.version     = ProtoField.uint32("inpdir.header.version",     "Version",         base.DEC)
-    f.payl_type   = ProtoField.uint8 ("inpdir.header.type",        "Type",            base.HEX, pkt_types_str)
-    f.payl_len    = ProtoField.uint32("inpdir.header.plen",        "Packet Length",   base.DEC)
-    f.msg_nr      = ProtoField.uint32("inpdir.header.seq",         "Sequence number", base.DEC)
-    f.session_key = ProtoField.guid  ("inpdir.header.session_key", "Session key",     base.HEX)
-    f.ip_src      = ProtoField.ipv4  ("inpdir.header.srcip",       "Sender IP")
-    f.port_src    = ProtoField.uint16("inpdir.header.srcport",     "Sender Port",     base.DEC)
+    f.magic       = ProtoField.bytes ("inpdirv8.header.magic",       "Magic")
+    f.hdr_len     = ProtoField.uint32("inpdirv8.header.len",         "Header Length",   base.DEC)
+    f.version     = ProtoField.uint32("inpdirv8.header.version",     "Version",         base.DEC)
+    f.payl_type   = ProtoField.uint8 ("inpdirv8.header.type",        "Type",            base.HEX, pkt_types_str)
+    f.payl_len    = ProtoField.uint32("inpdirv8.header.plen",        "Packet Length",   base.DEC)
+    f.msg_nr      = ProtoField.uint32("inpdirv8.header.seq",         "Sequence number", base.DEC)
+    f.session_key = ProtoField.guid  ("inpdirv8.header.session_key", "Session key",     base.HEX)
+    f.ip_src      = ProtoField.ipv4  ("inpdirv8.header.srcip",       "Sender IP")
+    f.port_src    = ProtoField.uint16("inpdirv8.header.srcport",     "Sender Port",     base.DEC)
 
 
 
