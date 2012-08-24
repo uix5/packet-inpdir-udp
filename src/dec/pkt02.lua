@@ -32,12 +32,9 @@ local function diss_pkt02(buf, pinfo, tree, goffset)
     offset = offset + diss_keyboard_settings(buf, pinfo, tree, offset)
 
 
-    -- dunno
-    offset = offset + add_unknown_field(buf, pinfo, tree, offset, 16)
-
-
-    -- dunno constant
-    offset = offset + add_unknown_fields(buf, pinfo, tree, offset, 2, 4)
+    -- ghost of neighbourslist of pkt 3 type
+    tree:add(buf(offset, 24), "Slave neighbours (G, incomplete)")
+    offset = offset + 24
 
 
     -- absolute coordinate of where cursor transitioned
