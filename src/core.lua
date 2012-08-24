@@ -117,6 +117,7 @@ do
     #include "api/cursor_trans_settings.lua"
     #include "api/clipboard_format_list.lua"
     #include "api/keyboard_settings.lua"
+    #include "api/neighbour_list.lua"
 
 
 

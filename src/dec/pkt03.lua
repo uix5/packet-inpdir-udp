@@ -1,16 +1,4 @@
 
--- local field decls
-f.pkt03_neighbours = ProtoField.uint8("inpdirv8.pkt03.nb", "Neighbours", base.HEX)
-f.pkt03_neighbours_left = ProtoField.uint8("inpdirv8.pkt03.nb.l", 
-    "Left  ", nil, yes_no_str, 0x01)
-f.pkt03_neighbours_right = ProtoField.uint8("inpdirv8.pkt03.nb.r", 
-    "Right ", nil, yes_no_str, 0x02)
-f.pkt03_neighbours_top = ProtoField.uint8("inpdirv8.pkt03.nb.t", 
-    "Top   ", nil, yes_no_str, 0x04)
-f.pkt03_neighbours_bottom = ProtoField.uint8("inpdirv8.pkt03.nb.b", 
-    "Bottom", nil, yes_no_str, 0x08)
-
-
 
 local function diss_pkt03(buf, pinfo, tree, goffset)
     -- handle common part
@@ -32,34 +20,15 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
     offset = offset + 4
 
 
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown1")
-    offset = offset + 4
+    -- nr of screen entered in multi-monitor setup?
+    add_named_tree_field(buf, tree, offset, 2, "Slave Screen X?")
+    offset = offset + 2
+    add_named_tree_field(buf, tree, offset, 2, "Slave Screen Y?")
+    offset = offset + 2
 
 
-    -- at which sides does this slave have screens to transition to?
-    local nb = buf(offset, 4)
-    local nbt = tree:add_le(f.pkt03_neighbours, nb)
-    nbt:append_text(_F(" (%s)", decode_side_flags(get_uint32_le(buf, offset))))
-    nbt:add_le(f.pkt03_neighbours_left, nb)
-    nbt:add_le(f.pkt03_neighbours_right, nb)
-    nbt:add_le(f.pkt03_neighbours_top, nb)
-    nbt:add_le(f.pkt03_neighbours_bottom, nb)
-    offset = offset + 4
-
-
-    -- dunno
-    offset = offset + add_unknown_field(buf, pinfo, tree, offset, 20)
-
-
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown3")
-    offset = offset + 4
-
-
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown4")
-    offset = offset + 4
+    -- neighbour list of slave screen(s)
+    offset = offset + diss_neighbour_list(buf, pinfo, tree, offset, 8)
 
 
     -- absolute coordinate of where cursor transitioned
