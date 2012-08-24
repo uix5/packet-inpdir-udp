@@ -11,4 +11,5 @@
 #include "dec/pkt0f.lua"
 #include "dec/pkt14.lua"
 #include "dec/pkt16.lua"
+#include "dec/pkt18.lua"
 #include "dec/pkt19.lua"

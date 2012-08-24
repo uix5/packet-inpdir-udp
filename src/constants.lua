@@ -37,6 +37,8 @@
 [PKT_DISABLE_EDGE_TRANSITIONS] = "M> Disable edge transitions",
 #define PKT_SESSION_TERMINATION 0x17
 [PKT_SESSION_TERMINATION] = "S> Session termination",
+#define PKT_MULTIMON_EDGE_TRAVERSAL 0x18
+[PKT_MULTIMON_EDGE_TRAVERSAL] = "S> Multi-monitor edge traversal",
 
 #define PKT_ENCRYPTION_CONFIG_MISMATCH 0x19
 [PKT_ENCRYPTION_CONFIG_MISMATCH] = "S> Encryption config mismatch",

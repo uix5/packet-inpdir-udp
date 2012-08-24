@@ -43,6 +43,7 @@ SOURCES = \
 	src/dec/pkt0f.lua \
 	src/dec/pkt14.lua \
 	src/dec/pkt16.lua \
+	src/dec/pkt18.lua \
 	src/dec/pkt19.lua
 
 

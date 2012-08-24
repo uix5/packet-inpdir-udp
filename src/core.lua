@@ -162,6 +162,7 @@ do
 
         [PKT_DISABLE_EDGE_TRANSITIONS] = diss_pkt16,
 
+        [PKT_MULTIMON_EDGE_TRAVERSAL] = diss_pkt18,
         [PKT_ENCRYPTION_CONFIG_MISMATCH] = diss_pkt19,
     }
 
