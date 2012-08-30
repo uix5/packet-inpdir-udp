@@ -10,16 +10,24 @@ local function diss_pkt18(buf, pinfo, tree, goffset)
 
 
     -- edge transition state
-    add_named_tree_field(buf, tree, offset, 4, "Unknown0")
-    offset = offset + 4
+    add_named_tree_field(buf, tree, offset, 2, "Unknown0a")
+    offset = offset + 2
+
+    -- edge transition state
+    add_named_tree_field(buf, tree, offset, 2, "Unknown0b")
+    offset = offset + 2
 
     -- edge transition state
     add_named_tree_field(buf, tree, offset, 4, "Unknown1")
     offset = offset + 4
 
     -- edge transition state
-    add_named_tree_field(buf, tree, offset, 4, "Unknown2")
-    offset = offset + 4
+    add_named_tree_field(buf, tree, offset, 2, "Unknown2a")
+    offset = offset + 2
+
+    -- edge transition state
+    add_named_tree_field(buf, tree, offset, 2, "Unknown2b")
+    offset = offset + 2
 
 
     -- add_zeros_field(buf, pinfo, tree, goffset, len = nil)
