@@ -8,14 +8,17 @@ local function diss_pkt07(buf, pinfo, tree, goffset)
     local offset = goffset + res
 
 
-
-    -- number of slave we are returning from
+    -- number of slave we are entering
     add_named_tree_field(buf, tree, offset, 4, "Slave Number")
     offset = offset + 4
 
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown")
-    offset = offset + 4
+    -- x coord of screen we come from
+    add_named_tree_field(buf, tree, offset, 2, "Slave Screen X?")
+    offset = offset + 2
+
+    -- y coord of screen we come from
+    add_named_tree_field(buf, tree, offset, 2, "Slave Screen Y?")
+    offset = offset + 2
 
     -- absolute coordinate of where cursor transitioned
     add_named_tree_field(buf, tree, offset, 4, "Exit Abs Coord"):append_text(
