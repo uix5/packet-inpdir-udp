@@ -61,7 +61,7 @@ local function dec_header(buf, pinfo, tree, goffset)
     -- encryption type used
     local enc_type = buf(offset, 1):le_uint()
     add_named_tree_field(buf, elt, offset, 1, "Payload encryption"):append_text(
-        _F(": %s", encryption_type_str_or_unknown(enc_type)))
+        _F(" (%s)", encryption_type_str_or_unknown(enc_type)))
     offset = offset + 1
 
     -- also encryption related

@@ -39,7 +39,7 @@ local function diss_pkt03(buf, pinfo, tree, goffset)
     -- flag indicating which side cursor should 'enter' screen
     local enter_from = buf(offset, 1):le_uint()
     add_named_tree_field(buf, tree, offset, 4, "Enter Side"):append_text(
-        _F(": %s", screen_enter_pos_str_or_unknown(enter_from)))
+        _F(" (%s)", screen_enter_pos_str_or_unknown(enter_from)))
     offset = offset + 4
 
     -- dunno constant
