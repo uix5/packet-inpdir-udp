@@ -19,14 +19,21 @@ local function diss_pkt04(buf, pinfo, tree, goffset)
         _F(": %s", decode_lock_flags(get_uint32_le(buf, offset))))
     offset = offset + 4
 
+    -- x coord of screen we come from
+    add_named_tree_field(buf, tree, offset, 2, "Slave Screen X?")
+    offset = offset + 2
 
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown0")
-    offset = offset + 4
+    -- y coord of screen we come from
+    add_named_tree_field(buf, tree, offset, 2, "Slave Screen Y?")
+    offset = offset + 2
 
-    -- dunno constant
-    add_named_tree_field(buf, tree, offset, 4, "Unknown1")
-    offset = offset + 4
+    -- 
+    add_named_tree_field(buf, tree, offset, 2, "Unknown1a")
+    offset = offset + 2
+
+    -- 
+    add_named_tree_field(buf, tree, offset, 2, "Unknown1b")
+    offset = offset + 2
 
     -- add_zeros_field(buf, pinfo, tree, goffset, len = nil)
     offset = offset + add_zeros_field(buf, pinfo, tree, offset)
