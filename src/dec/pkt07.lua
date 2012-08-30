@@ -13,11 +13,11 @@ local function diss_pkt07(buf, pinfo, tree, goffset)
     offset = offset + 4
 
     -- x coord of screen we come from
-    add_named_tree_field(buf, tree, offset, 2, "Slave Screen X?")
+    add_named_tree_field(buf, tree, offset, 2, "Destination Screen X?")
     offset = offset + 2
 
     -- y coord of screen we come from
-    add_named_tree_field(buf, tree, offset, 2, "Slave Screen Y?")
+    add_named_tree_field(buf, tree, offset, 2, "Destination Screen Y?")
     offset = offset + 2
 
     -- absolute coordinate of where cursor transitioned
@@ -28,7 +28,7 @@ local function diss_pkt07(buf, pinfo, tree, goffset)
     -- flag indicating which side cursor should 'enter' screen
     local enter_from = buf(offset, 1):le_uint()
     add_named_tree_field(buf, tree, offset, 4, "Exit Side"):append_text(
-        _F(": %s", screen_enter_pos_str_or_unknown(enter_from)))
+        _F(" (%s)", screen_enter_pos_str_or_unknown(enter_from)))
     offset = offset + 4
 
     -- add_zeros_field(buf, pinfo, tree, goffset, len = nil)
