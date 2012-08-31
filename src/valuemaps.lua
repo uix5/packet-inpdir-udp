@@ -174,6 +174,10 @@ local function yes_no_str_or_unknown(arg)
     return generic_str_or_none(yes_no_str, arg)
 end
 
+local function on_off_str_or_unknown(arg)
+    return generic_str_or_none(on_off_str, arg)
+end
+
 local function input_type_str_or_unknown(arg)
     return generic_str_or_none(input_type_str, arg)
 end
