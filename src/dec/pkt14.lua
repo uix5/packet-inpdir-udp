@@ -59,15 +59,9 @@ local function diss_pkt14(buf, pinfo, tree, goffset)
     -- go to payload part
     -- TODO: fix hardcoded lengths
     local payload_start = HDR_LEN
-    offset = payload_start
-
-
-
-    -- some unknown bytes
---  local len = (buf:len() - offset) - (str_len + 1)
-    -- local len = 84
-    -- tree:add(buf(offset, len), _F("Unknown (%d bytes)", len))
-    -- offset = offset + len
+    local len = payload_start - offset
+    tree:add(buf(offset, len), _F("Unknown / Zeros (%d bytes)", len))
+    offset = offset + len
 
 
     -- screen layout
