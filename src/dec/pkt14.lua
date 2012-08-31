@@ -15,7 +15,8 @@ local function diss_pkt14(buf, pinfo, tree, goffset)
 
     -- see if this is a reset pkt
     local is_reset = get_uint32_le(buf, offset)
-    add_named_tree_field(buf, tree, offset, 4, "Config valid?")
+    add_named_tree_field(buf, tree, offset, 4, "Config valid?"):append_text(
+        _F(" (%s)", yes_no_str_or_unknown(is_reset)))
     offset = offset + 4
 
 

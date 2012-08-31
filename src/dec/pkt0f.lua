@@ -9,7 +9,8 @@ local function diss_pkt0F(buf, pinfo, tree, goffset)
     local offset = goffset + res
 
 
-    add_named_tree_field(buf, tree, offset, 4, "Screensaver state")
+    add_named_tree_field(buf, tree, offset, 4, "Screensaver state"):append_text(
+        _F(" (%s)", on_off_str_or_unknown(get_uint32_le(buf, offset))))
     offset = offset + 4
 
 

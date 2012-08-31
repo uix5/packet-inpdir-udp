@@ -10,7 +10,8 @@ local function diss_pkt16(buf, pinfo, tree, goffset)
 
 
     -- edge transition state
-    add_named_tree_field(buf, tree, offset, 4, "Transitions disabled")
+    add_named_tree_field(buf, tree, offset, 4, "Transitions disabled"):append_text(
+        _F(" (%s)", yes_no_str_or_unknown(get_uint32_le(buf, offset))))
     offset = offset + 4
 
     -- add_zeros_field(buf, pinfo, tree, goffset, len = nil)
