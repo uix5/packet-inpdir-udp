@@ -8,7 +8,7 @@ local function diss_pkt07(buf, pinfo, tree, goffset)
     local offset = goffset + res
 
 
-    -- number of slave we are entering
+    -- number of slave we are returning from
     add_named_tree_field(buf, tree, offset, 4, "Slave Number")
     offset = offset + 4
 
