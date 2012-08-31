@@ -4,7 +4,7 @@ Stab at a dissector for the Input Director protocol, v8 (used by 1.2.2).
 
 This runs over UDP, (normally) at port 31234.
 
-Tested with Wireshark 1.6.x, 1.8.x and nightlies.
+Tested with Wireshark 1.6.x, 1.8.x and 1.9.x nightlies.
 
 Make sure Lua is enabled in Wireshark, build dissector (see Makefile), then 
 copy it to the Wireshark plugins directory (in homedir).
