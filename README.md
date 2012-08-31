@@ -7,6 +7,7 @@ Based on the protocol info from [uix5/info-inpdir][]. Work in progress.
 Only supports version 8 of the protocol (for now), which is used by v1.2.2 of
 Input Director.
 
+Tested with Wireshark 1.6.x, 1.8.x and 1.9.x nightlies.
 
 PS: I'm not a Lua coder, which probably explains the mess of code.
 
