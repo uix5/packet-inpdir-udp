@@ -46,7 +46,7 @@ local function diss_pkt02(buf, pinfo, tree, goffset)
     -- side where cursor came from?
     local cursor_origin = buf(offset, 4):le_uint()
     add_named_tree_field(buf, tree, offset, 4, "Enter Side? (G)"):append_text(
-        _F(": %s", decode_side_flags(cursor_origin)))
+        _F(" (%s)", decode_side_flags(cursor_origin)))
     offset = offset + 4
 
 
