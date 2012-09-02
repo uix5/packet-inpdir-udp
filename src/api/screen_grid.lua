@@ -19,21 +19,20 @@ local function diss_screen_grid(buf, pinfo, tree, goffset)
 
 
     -- dimensions of grid used by master
-    local slave_cols = buf(offset, 1):le_uint()
+    local slave_cols = get_uint8_le(buf, offset)
     add_named_tree_field(buf, mt, offset, 1, "Grid cols")
     offset = offset + 1
 
-    local slave_rows = buf(offset, 1):le_uint()
+    local slave_rows = get_uint8_le(buf, offset)
     add_named_tree_field(buf, mt, offset, 1, "Grid rows")
     offset = offset + 1
 
     -- whether or not the master is configured to use windows monitor IDs
     -- (== whether the data sent contains those)
-    local slave_mon_ids_int = buf(offset, 1):le_uint()
+    local slave_mon_ids_int = get_uint8_le(buf, offset)
     local slave_mon_ids_enabled = (slave_mon_ids_int ~= 0)
     mt:add(buf(offset, 1), _F("Master uses Windows monitor IDs: %s", 
         yes_no_str_or_unknown(slave_mon_ids_int)))
-    -- add_named_tree_field(buf, mt, offset, 1, "Master uses Windows monitor IDs")
     offset = offset + 1
 
     -- total nr of grid cells
