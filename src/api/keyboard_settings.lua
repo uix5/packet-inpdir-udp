@@ -18,7 +18,7 @@ local function diss_keyboard_settings(buf, pinfo, tree, goffset)
     -- dunno constant
     local flags2 = buf(offset, 2):le_uint()
     add_named_tree_field(buf, mt, offset, 2, "Flags2"):append_text(
-        _F(": %s", decode_kb_layout_flags(flags2)))
+        _F(" (%s)", decode_kb_layout_flags(flags2)))
     offset = offset + 2
 
 

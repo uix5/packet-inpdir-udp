@@ -14,7 +14,7 @@ local function diss_mouse_settings(buf, pinfo, tree, goffset)
     -- flags?
     local mflags = buf(offset, 4):le_uint()
     add_named_tree_field(buf, mt, offset, 4, "Master mouse prefs"):append_text(
-        _F(": %s", decode_master_mouse_flags(mflags)))
+        _F(" (%s)", decode_master_mouse_flags(mflags)))
     offset = offset + 4
 
     -- flags?
