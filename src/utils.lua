@@ -122,6 +122,16 @@ local function perc_to_mickeys(p)
 end
 
 
+local function get_uint8_le(buf, offset)
+    return buf(offset, 1):le_uint()
+end
+
+
+local function get_uint16_le(buf, offset)
+    return buf(offset, 2):le_uint()
+end
+
+
 local function get_uint32_le(buf, offset)
     return buf(offset, 4):le_uint()
 end
