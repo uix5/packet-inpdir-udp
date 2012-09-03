@@ -16,7 +16,7 @@ local function diss_pkt04(buf, pinfo, tree, goffset)
 
     -- state of caps/num/scroll lock keys on slave
     add_named_tree_field(buf, tree, offset, 4, "Lock flags"):append_text(
-        _F(": %s", decode_lock_flags(get_uint32_le(buf, offset))))
+        _F(" (%s)", decode_lock_flags(get_uint32_le(buf, offset))))
     offset = offset + 4
 
     -- x coord of screen we come from
