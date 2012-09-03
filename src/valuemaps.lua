@@ -81,7 +81,7 @@ local screen_enter_pos_str = {
     [0x02] = "Right",
     [0x04] = "Top",
     [0x08] = "Bottom",
-    [0x10] = "No side (shortcut)"
+    [0x10] = "No side - shortcut"
 }
 
 
