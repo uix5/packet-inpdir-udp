@@ -2,15 +2,15 @@
 local function dec_header(buf, pinfo, tree, goffset)
     local offset = goffset
 
-    -- overlay common size on pkt
-    lt = tree:add(buf(offset, COMMON_LENGTH), _F("Common (%d bytes)", COMMON_LENGTH))
-
     -- pseudo header length
     local maybe_header_len_offset = 4 * 3
     local maybe_header_len = buf(offset + maybe_header_len_offset, 4):le_uint()
     local pho = tree:add(buf(offset, maybe_header_len), 
         _F("Pseudo header overlay (%d bytes)", maybe_header_len))
     pho:set_generated()
+
+    -- overlay common size on pkt
+    lt = tree:add(buf(offset, COMMON_LENGTH), _F("Common (%d bytes)", COMMON_LENGTH))
 
     -- magic
     local magic_sz = 4 * 3
